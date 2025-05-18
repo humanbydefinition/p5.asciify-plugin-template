@@ -1,17 +1,35 @@
 import p5 from 'p5';
-import type { P5AsciifyRendererPlugin } from 'p5.asciify/plugins';
-import { P5AsciifyGrid, P5AsciifyFontManager, renderers } from 'p5.asciify';
-
+import { P5AsciifyGrid, P5AsciifyFontManager, renderers, plugins } from 'p5.asciify';
 import { P5AsciifyAccurateRenderer, ACCURATE_DEFAULT_OPTIONS } from './renderer/AccurateAsciiRenderer';
+
+// Declare Window interface augmentation right here
+declare global {
+  interface Window {
+    AccurateRendererPlugin: plugins.P5AsciifyRendererPlugin;
+  }
+}
+
 /**
- * The Accurate Renderer Plugin for p5.asciify
+ * `p5.asciify` plugin that provides an accurate ASCII renderer.
+ * This renderer attempts to pick the most fitting ASCII representation
+ * to accurately represent the input sketch using the available ASCII characters.
  */
-export const AccurateRendererPlugin: P5AsciifyRendererPlugin = {
+export const AccurateRendererPlugin: plugins.P5AsciifyRendererPlugin = {
     id: 'accurate',
     name: 'Accurate ASCII Renderer',
     description: 'An ASCII renderer that attempts picking the most fitting ASCII representation to accurately represent the input sketch using the available ASCII characters.',
     version: '1.0.0',
+    author: 'humanbydefinition',
     
+    /**
+     * Creates a new instance of the accurate ASCII renderer.
+     * @param p The p5 instance.
+     * @param captureFramebuffer The framebuffer to apply the ASCII effect to.
+     * @param grid The grid to use.
+     * @param fontManager The font manager to use.
+     * @param options The options to use.
+     * @returns The new instance of the accurate ASCII renderer.
+     */
     create(
         p: p5,
         captureFramebuffer: p5.Framebuffer,
@@ -29,5 +47,6 @@ export const AccurateRendererPlugin: P5AsciifyRendererPlugin = {
     }
 };
 
-// Export the plugin as default for easier importing
-export default AccurateRendererPlugin;
+if (typeof window !== 'undefined') {
+  window.AccurateRendererPlugin = AccurateRendererPlugin;
+}

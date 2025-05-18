@@ -1,18 +1,51 @@
 {
-  "name": "p5.asciify-accurate-renderer-plugin",
-  "private": true,
-  "version": "0.0.0",
+  "name": "p5.asciify-renderer-plugin-template",
+  "version": "1.0.0",
+  "description": "A p5.asciify renderer plugin template for creating custom ASCII art renderers.",
   "type": "module",
+  "types": "./dist/types/AccurateRendererPlugin.d.ts",
+  "main": "./dist/p5.asciify-plugin-template.umd.js",
+  "module": "./dist/p5.asciify-plugin-template.esm.js",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build && tsc",
     "preview": "vite preview"
   },
   "devDependencies": {
     "typescript": "~5.8.3",
-    "vite": "^6.3.5"
+    "vite": "^6.3.5",
+    "vite-plugin-glsl": "^1.3.1",
+    "@types/p5": "^1.7.6"
   },
   "dependencies": {
-    "p5.asciify": "^0.9.1-beta.4"
-  }
+    "p5.asciify": "^0.9.5"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/types/AccurateRendererPlugin.d.ts",
+      "import": "./dist/p5.asciify-plugin-template.esm.js",
+      "require": "./dist/p5.asciify-plugin-template.umd.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/humanbydefinition/p5.asciify-plugin-template.git"
+  },
+  "keywords": [
+    "p5",
+    "p5js",
+    "p5-library",
+    "p5.asciify",
+    "ascii",
+    "textmode"
+  ],
+  "author": "humanbydefinition",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/humanbydefinition/p5.asciify-plugin-template/issues"
+  },
+  "homepage": "https://p5.textmode.art",
+  "files": [
+    "dist"
+  ]
 }
